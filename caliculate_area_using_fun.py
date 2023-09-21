@@ -2,23 +2,29 @@ import math
 
 def calculate_area(*args):
     if len(args) == 2:
+        length, width = args
+        if length < 0 or width < 0:
+            raise ValueError("Length and width must be non-negative")
         print("This is the rectangle method")
-        return f"The rectangle area value is {args[0] * args[1]}"
+        return f"The rectangle area value is {length * width}"
     elif len(args) == 1:
+        radius = args[0]
+        if radius < 0:
+            raise ValueError("Radius must be non-negative")
         print("This is the circle method")
-        return f"The circle area value is {math.pi * args[0] ** 2}"
+        return f"The circle area value is {math.pi * radius ** 2}"
     elif len(args) == 3 and args[2] == 'triangle':
+        base, height = args[:2]
+        if base < 0 or height < 0:
+            raise ValueError("Base and height must be non-negative")
         print("This is the triangle method")
-        return f"The triangle area value is {0.5 * args[0] * args[1]}"
-    elif len(args) == 2 and args[0] == 'rectangle':
-        print("This is the custom rectangle method")
-        return f"The custom rectangle area value is {args[1][0] * args[1][1]}"
+        return f"The triangle area value is {0.5 * base * height}"
     else:
         raise ValueError("Invalid arguments provided")
 
 while True:
     try:
-        print("Choose any one calculate the area:")
+        print("Choose any one to calculate the area:")
         print("1. Rectangle")
         print("2. Circle")
         print("3. Triangle")
